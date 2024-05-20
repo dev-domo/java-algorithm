@@ -26,6 +26,10 @@ public class Score {
         this.giftScore[index]--;
     }
 
+    public boolean biggerScore(int index1, int index2) {
+        return this.giftScore[index1] > this.giftScore[index2];
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -37,9 +41,5 @@ public class Score {
     @Override
     public int hashCode() {
         return Arrays.hashCode(giftScore);
-    }
-
-    public boolean biggerScore(int index1, int index2) {
-        return this.giftScore[index1] > this.giftScore[index2];
     }
 }

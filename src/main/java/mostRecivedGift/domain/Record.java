@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Record {
-    private int[][] giveTakeRecord;
+    private final int[][] giveTakeRecord;
 
     public Record(int[][] example) {
         this.giveTakeRecord = example;
@@ -21,16 +21,31 @@ public class Record {
     public int findMax(Score score) {
         int max = 0;
         for (int i = 0; i < this.giveTakeRecord.length; i++) {
-            int cnt = 0;
-            for (int j = 0; j < this.giveTakeRecord[0].length; j++) {
-                if (this.giveTakeRecord[i][j] > this.giveTakeRecord[j][i])
-                    cnt++;
-                if (this.giveTakeRecord[i][j] == this.giveTakeRecord[j][i] && score.biggerScore(i, j))
-                    cnt++;
-            }
-            max = Math.max(max, cnt);
+            max = Math.max(max, countGift(i, score));
         }
         return max;
+    }
+
+    private int countGift(int i, Score score) {
+        int cnt = 0;
+        for (int j = 0; j < this.giveTakeRecord[0].length; j++) {
+            cnt += canReceiveGift(i, j, score);
+        }
+        return cnt;
+    }
+
+    private int canReceiveGift(int i, int j, Score score) {
+        if (giveMoreGift(i, j) || (sameGiveCount(i, j) && score.biggerScore(i, j)))
+            return 1;
+        return 0;
+    }
+
+    private boolean giveMoreGift(int i, int j) {
+        return this.giveTakeRecord[i][j] > this.giveTakeRecord[j][i];
+    }
+
+    private boolean sameGiveCount(int i, int j) {
+        return this.giveTakeRecord[i][j] == this.giveTakeRecord[j][i];
     }
 
     @Override

@@ -29,12 +29,14 @@ public class Record {
     private int countGift(int i, Score score) {
         int cnt = 0;
         for (int j = 0; j < this.giveTakeRecord[0].length; j++) {
-            cnt += canReceiveGift(i, j, score);
+            int[] index = {i,j};
+            cnt += canReceiveGift(index, score);
         }
         return cnt;
     }
 
-    private int canReceiveGift(int i, int j, Score score) {
+    private int canReceiveGift(int[] index, Score score) {
+        int i = index[0], j = index[1];
         if (giveMoreGift(i, j) || (sameGiveCount(i, j) && score.biggerScore(i, j)))
             return 1;
         return 0;

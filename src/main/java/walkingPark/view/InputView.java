@@ -1,4 +1,4 @@
-package walkingPark;
+package walkingPark.view;
 
 import java.util.Scanner;
 
@@ -17,12 +17,16 @@ public class InputView {
     public static String[] inputParkArea(int width, int height) {
         String[] park = new String[height];
         for (int i = 0; i < height; i++) {
-            StringBuilder str = new StringBuilder();
-            for (int j = 0; j < width; j++) {
-                str.append(scan.next());
-            }
-            park[i] = str.toString();
+            park[i] = inputParkLine(width);
         }
         return park;
+    }
+
+    private static String inputParkLine(int width) {
+        StringBuilder str = new StringBuilder();
+        for (int j = 0; j < width; j++) {
+            str.append(scan.next());
+        }
+        return str.toString();
     }
 }

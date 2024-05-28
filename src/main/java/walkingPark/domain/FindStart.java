@@ -4,13 +4,15 @@ public class FindStart {
     private static final String START = "S";
 
     public static Position whereIsStart(String[] park) {
-        Position position = null;
-        for (int i = 0; i < park.length; i++) {
-            int idx = park[i].indexOf(START);
-            if (idx > 0) {
-                position = new Position(i, idx);
+        for (int row = 0; row < park.length; row++) {
+            if (isContainsStart(park[row])) {
+                return new Position(row, park[row].indexOf(START));
             }
         }
-        return position;
+        return null;
+    }
+
+    private static boolean isContainsStart(String parkLine) {
+        return parkLine.contains(START);
     }
 }

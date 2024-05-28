@@ -33,4 +33,12 @@ public class Position {
     public void moveCol(int move) {
         this.col += move;
     }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
 }

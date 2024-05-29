@@ -27,11 +27,11 @@ public class Position {
     }
 
     public void moveRow(int move) {
-        this.row += move;
+        this.row = move;
     }
 
     public void moveCol(int move) {
-        this.col += move;
+        this.col = move;
     }
 
     public int getRow() {
@@ -40,5 +40,9 @@ public class Position {
 
     public int getCol() {
         return this.col;
+    }
+
+    public int[] getCurrent() {
+        return new int[]{this.row, this.col};
     }
 }

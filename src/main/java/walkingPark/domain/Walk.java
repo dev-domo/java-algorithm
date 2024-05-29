@@ -18,10 +18,7 @@ public class Walk {
 
     public static Position startWalking(String[] park, String[] routes, Position position) {
         for (String route : routes) {
-            int[] start = {
-                    position.getRow(), position.getCol()
-            };
-            int[] current = choiceWay(park, route, start);
+            int[] current = choiceWay(park, route, position.getCurrent());
             position.moveRow(current[0]);
             position.moveCol(current[1]);
         }
@@ -32,11 +29,12 @@ public class Walk {
         String direct = splitRoute(route)[0];
         int move = parseToInt(splitRoute(route)[1]);
         int ny = start[0], nx = start[1];
+        int step = 1;
 
         for (int i = 1; i <= move; i++) {
             nx += checkColMove(direct);
             ny += checkRowMove(direct);
-            if (isOutOfRange(nx, ny, park)) {
+            if (isOutOfRange(nx, ny, park) || isContactedObstruction(nx, ny, park)) {
                 ny = start[0];
                 nx = start[1];
                 break;
@@ -46,22 +44,22 @@ public class Walk {
     }
 
     private static int checkColMove(String direct) {
-        if (direct.equals(EAST))
-            return 1;
-        if (direct.equals(WEST))
-            return -1;
+        if (direct.equals(EAST)) return 1;
+        if (direct.equals(WEST)) return -1;
         return 0;
     }
 
     private static int checkRowMove(String direct) {
-        if (direct.equals(SOUTH))
-            return 1;
-        if (direct.equals(NORTH))
-            return -1;
+        if (direct.equals(SOUTH)) return 1;
+        if (direct.equals(NORTH)) return -1;
         return 0;
     }
 
     private static boolean isOutOfRange(int nx, int ny, String[] park) {
-        return nx < 0 || ny < 0 || nx >= park[0].length() || ny >= park.length || String.valueOf(park[ny].charAt(nx)).equals(OBSTRUCTION);
+        return nx < 0 || ny < 0 || nx >= park[0].length() || ny >= park.length;
+    }
+
+    private static boolean isContactedObstruction(int nx, int ny, String[] park) {
+        return String.valueOf(park[ny].charAt(nx)).equals(OBSTRUCTION);
     }
 }

@@ -16,7 +16,7 @@ public class InputView {
         return scan.nextInt();
     }
 
-    public static String[] inputParkArea(int width, int height) {
+    public static String[] inputParkArea( int height) {
         System.out.println("공원을 조성해주세요 : ");
         String[] park = new String[height];
         for (int i = 0; i < height; i++) {

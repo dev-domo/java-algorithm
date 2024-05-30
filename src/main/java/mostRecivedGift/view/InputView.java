@@ -18,4 +18,7 @@ public class InputView {
         }
         return gifts;
     }
+
+    public static void inputParkWidth() {
+    }
 }

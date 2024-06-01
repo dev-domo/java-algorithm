@@ -22,4 +22,12 @@ public class Routes {
     public int hashCode() {
         return Arrays.hashCode(route);
     }
+
+    public int countRoutes() {
+        return this.route.length;
+    }
+
+    public Route nextRoute(int index) {
+        return this.route[index];
+    }
 }

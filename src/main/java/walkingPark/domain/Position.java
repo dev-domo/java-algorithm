@@ -15,6 +15,10 @@ public class Position {
         this.col = col;
     }
 
+    public Position move(Park park, Route route) {
+        return route.tryMove(park, this.row, this.col);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)

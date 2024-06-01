@@ -35,8 +35,4 @@ public class Col {
     public int hashCode() {
         return Objects.hash(limit);
     }
-
-    public int getCol() {
-        return this.limit;
-    }
 }

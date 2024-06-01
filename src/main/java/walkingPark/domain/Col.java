@@ -3,14 +3,22 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Col {
-    private int num;
+    private int limit;
     public Col(int num) {
-        this.num = num;
+        this.limit = num;
     }
 
     public Col update(int move) {
-        this.num += move;
-        return new Col(this.num);
+        this.limit += move;
+        return new Col(this.limit);
+    }
+
+    public boolean isInRange(int width) {
+        return this.limit >= 0 && this.limit < width;
+    }
+
+    public String findLocation(String parkLine) {
+        return String.valueOf(parkLine.charAt(this.limit));
     }
 
     @Override
@@ -20,11 +28,15 @@ public class Col {
         if (!(o instanceof Col))
             return false;
         Col col = (Col) o;
-        return num == col.num;
+        return limit == col.limit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(num);
+        return Objects.hash(limit);
+    }
+
+    public int getCol() {
+        return this.limit;
     }
 }

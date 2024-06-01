@@ -12,9 +12,32 @@ import java.util.stream.LongStream;
 
 public class Park {
     private static final String START = "S";
+    private static final String OBSTRUCTION = "X";
+
     private String[] input;
     public Park(String[] input) {
         this.input = input;
+    }
+
+    public Position findStart() {
+        for (int i = 0; i < this.input.length; i++) {
+            if (this.input[i].contains(START)) {
+                return new Position(i, this.input[i].indexOf(START));
+            }
+        }
+        return null;
+    }
+
+    public int getWidth() {
+        return this.input[0].length();
+    }
+
+    public int getHeight() {
+        return this.input.length;
+    }
+
+    public boolean isMeetObstruction(Row row, Col col) {
+        return col.findLocation(row.getParkLine(this.input)).equals(OBSTRUCTION);
     }
 
     @Override
@@ -30,14 +53,5 @@ public class Park {
     @Override
     public int hashCode() {
         return Arrays.hashCode(input);
-    }
-
-    public Position findStart() {
-        for (int i = 0; i < this.input.length; i++) {
-            if (this.input[i].contains(START)) {
-                return new Position(i, this.input[i].indexOf(START));
-            }
-        }
-        return null;
     }
 }

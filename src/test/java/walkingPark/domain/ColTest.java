@@ -18,4 +18,20 @@ public class ColTest {
     void col_수정(int move, int result) {
         assertThat(new Col(1).update(move)).isEqualTo(new Col(result));
     }
+
+    @Test
+    void col_범위() {
+        Col col1 = new Col(3);
+        Col col2 = new Col(2);
+        Park park = new Park(new String[]{"SOO","OXX"});
+
+        assertThat(col1.isInRange(park.getWidth())).isFalse();
+        assertThat(col2.isInRange(park.getWidth())).isTrue();
+    }
+
+    @Test
+    void 공원_위치_구하기() {
+        Col col = new Col(1);
+        assertThat(col.findLocation("SOX")).isEqualTo("O");
+    }
 }

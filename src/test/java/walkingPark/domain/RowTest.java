@@ -17,4 +17,21 @@ public class RowTest {
     void col_수정(int move, int result) {
         assertThat(new Row(1).update(move)).isEqualTo(new Row(result));
     }
+
+    @Test
+    void row_범위_벗어남() {
+        Row row1 = new Row(2);
+        Row row2 = new Row(1);
+        Park park = new Park(new String[]{"SOO","OXX"});
+
+        assertThat(row1.isInRange(park.getHeight())).isFalse();
+        assertThat(row2.isInRange(park.getHeight())).isTrue();
+    }
+
+    @Test
+    void 공원_한줄_구하기() {
+        Row row = new Row(1);
+        String[] park = {"SOO","OXX"};
+        assertThat(row.getParkLine(park)).isEqualTo("OXX");
+    }
 }

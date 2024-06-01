@@ -3,15 +3,23 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Row {
-    private int num;
+    private int limit;
 
     public Row(int num) {
-        this.num = num;
+        this.limit = num;
     }
 
     public Row update(int move) {
-        this.num += move;
-        return new Row(this.num);
+        this.limit += move;
+        return new Row(this.limit);
+    }
+
+    public boolean isInRange(int height) {
+        return this.limit >= 0 && this.limit < height;
+    }
+
+    public String getParkLine(String[] park) {
+        return park[this.limit];
     }
 
     @Override
@@ -21,11 +29,11 @@ public class Row {
         if (!(o instanceof Row))
             return false;
         Row row = (Row) o;
-        return num == row.num;
+        return limit == row.limit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(num);
+        return Objects.hash(limit);
     }
 }

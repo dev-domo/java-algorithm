@@ -9,6 +9,14 @@ public class Row {
         this.limit = num;
     }
 
+    public Row(Row row) {
+        this.limit = row.getRow();
+    }
+
+    private int getRow() {
+        return this.limit;
+    }
+
     public Row update(int move) {
         this.limit += move;
         return new Row(this.limit);

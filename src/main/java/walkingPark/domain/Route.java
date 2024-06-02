@@ -20,22 +20,21 @@ public class Route {
     }
 
     public Position tryMove(Park park, Row row, Col col) {
-        Row tmpRow = row;
-        Col tmpCol = col;
+        Row beforeRow = new Row(row);
+        Col beforeCol = new Col(col);
+
         for (int i = 0; i < this.move; i++) {
-            if (this.direct.equals(EAST)) tmpCol = tmpCol.update(1);
-            if (this.direct.equals(WEST)) tmpCol = tmpCol.update(-1);
-            if (this.direct.equals(SOUTH)) tmpRow = tmpRow.update(1);
-            if (this.direct.equals(NORTH)) tmpRow = tmpRow.update(-1);
-            // Work here : 범위 벗어난 경우, 장애물 벗어난 경우
-            if (!tmpRow.isInRange(park.getHeight()) || !tmpCol.isInRange(park.getWidth()) || park.isMeetObstruction(tmpRow, tmpCol)) {
-                tmpRow = row;
-                tmpCol = col;
-                System.out.println("ho!");
+            if (this.direct.equals(EAST)) col = col.update(1);
+            if (this.direct.equals(WEST)) col = col.update(-1);
+            if (this.direct.equals(SOUTH)) row = row.update(1);
+            if (this.direct.equals(NORTH)) row = row.update(-1);
+            if (!row.isInRange(park.getHeight()) || !col.isInRange(park.getWidth()) || park.isMeetObstruction(row, col)) {
+                row = beforeRow;
+                col = beforeCol;
                 break;
             }
         }
-        return new Position(tmpRow, tmpCol);
+        return new Position(row, col);
     }
 
     @Override

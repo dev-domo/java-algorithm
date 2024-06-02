@@ -3,6 +3,8 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Row {
+    private static final String SOUTH = "S";
+    private static final String NORTH = "N";
     private int limit;
 
     public Row(int num) {
@@ -28,6 +30,14 @@ public class Row {
 
     public String getParkLine(String[] park) {
         return park[this.limit];
+    }
+
+    public Row getNewRow(String direct) {
+        if (direct.equals(SOUTH))
+            return update(1);
+        if (direct.equals(NORTH))
+            return update(-1);
+        return new Row(this.limit);
     }
 
     @Override

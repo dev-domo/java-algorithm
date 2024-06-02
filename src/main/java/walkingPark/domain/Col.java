@@ -3,6 +3,8 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Col {
+    private static final String EAST = "E";
+    private static final String WEST = "W";
     private int limit;
     public Col(int num) {
         this.limit = num;
@@ -27,6 +29,14 @@ public class Col {
 
     public String findLocation(String parkLine) {
         return String.valueOf(parkLine.charAt(this.limit));
+    }
+
+    public Col getNewCol(String direct) {
+        if (direct.equals(EAST))
+            return update(1);
+        if (direct.equals(WEST))
+            return update(-1);
+        return new Col(this.limit);
     }
 
     @Override

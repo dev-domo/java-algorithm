@@ -1,37 +1,36 @@
 package walkingPark.view;
 
+import walkingPark.domain.Park;
+import walkingPark.domain.Route;
+import walkingPark.domain.Routes;
+
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scan = new Scanner(System.in);
     private static final int MAX_ROUTES = 3;
 
-    public static int inputParkWidth() {
-        System.out.print("공원의 가로 길이를 설정해주세요 : ");
-        return scan.nextInt();
-    }
-
     public static int inputParkHeight() {
         System.out.print("공원의 세로 길이를 설정해주세요 : ");
         return scan.nextInt();
     }
 
-    public static String[] inputParkArea( int height) {
+    public static Park inputParkArea(int height) {
         System.out.println("공원을 조성해주세요 : ");
-        String[] park = new String[height];
+        String[] parkArea = new String[height];
         for (int i = 0; i < height; i++) {
-            park[i] = scan.next();
+            parkArea[i] = scan.next();
         }
         scan.nextLine();
-        return park;
+        return new Park(parkArea);
     }
 
-    public static String[] inputRoutes() {
+    public static Routes inputRoutes() {
         System.out.println("루트를 설정해주세요 : ");
-        String[] routes = new String[MAX_ROUTES];
+        Route[] routes = new Route[MAX_ROUTES];
         for (int i = 0; i < routes.length; i++) {
-            routes[i] = scan.nextLine();
+            routes[i] = new Route(scan.nextLine());
         }
-        return routes;
+        return new Routes(routes);
     }
 }

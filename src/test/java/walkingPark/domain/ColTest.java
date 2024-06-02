@@ -34,4 +34,11 @@ public class ColTest {
         Col col = new Col(1);
         assertThat(col.findLocation("SOX")).isEqualTo("O");
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"E:2", "W:0", "S:1", "N:1"}, delimiter = ':')
+    void 새로운_col(String direct, int move) {
+        Col col = new Col(1);
+        assertThat(col.getNewCol(direct)).isEqualTo(new Col(move));
+    }
 }

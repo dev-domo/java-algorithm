@@ -14,7 +14,7 @@ public class Park {
     private static final String START = "S";
     private static final String OBSTRUCTION = "X";
 
-    private String[] input;
+    private final String[] input;
     public Park(String[] input) {
         this.input = input;
     }

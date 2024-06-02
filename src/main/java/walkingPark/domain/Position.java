@@ -3,8 +3,8 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Position {
-    private Row row;
-    private Col col;
+    private final Row row;
+    private final Col col;
 
     public Position(int row, int col) {
         this(new Row(row), new Col(col));

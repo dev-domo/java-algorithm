@@ -3,7 +3,7 @@ package walkingPark.domain;
 import java.util.Arrays;
 
 public class Routes {
-    private Route[] route;
+    private final Route[] route;
     public Routes(Route[] route) {
         this.route = route;
     }

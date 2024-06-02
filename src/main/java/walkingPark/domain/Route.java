@@ -3,14 +3,22 @@ package walkingPark.domain;
 import java.util.Objects;
 
 public class Route {
-    private final String direct;
-    private final int move;
+    private final Direct direct;
+    private final Move move;
 
     public Route(String input) {
         this(input.split(" ")[0], Integer.parseInt(input.split(" ")[1]));
     }
 
     public Route(String direct, int move) {
+        this(new Direct(direct), move);
+    }
+
+    public Route(Direct direct, int move) {
+        this(direct, new Move(move));
+    }
+
+    public Route(Direct direct, Move move) {
         this.direct = direct;
         this.move = move;
     }
@@ -19,7 +27,7 @@ public class Route {
         Row beforeRow = new Row(row);
         Col beforeCol = new Col(col);
 
-        for (int i = 0; i < this.move; i++) {
+        for (int i = 0; i < this.move.getNum(); i++) {
             col = col.getNewCol(this.direct);
             row = row.getNewRow(this.direct);
             if (!row.isInRange(park.getHeight()) || !col.isInRange(park.getWidth()) || park.isMeetObstruction(row, col)) {

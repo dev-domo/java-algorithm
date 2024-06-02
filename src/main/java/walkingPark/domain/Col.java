@@ -31,10 +31,10 @@ public class Col {
         return String.valueOf(parkLine.charAt(this.limit));
     }
 
-    public Col getNewCol(String direct) {
-        if (direct.equals(EAST))
+    public Col getNewCol(Direct direct) {
+        if (Objects.equals(direct, new Direct(EAST)))
             return update(1);
-        if (direct.equals(WEST))
+        if (Objects.equals(direct, new Direct(WEST)))
             return update(-1);
         return new Col(this.limit);
     }

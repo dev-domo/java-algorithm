@@ -32,10 +32,10 @@ public class Row {
         return park[this.limit];
     }
 
-    public Row getNewRow(String direct) {
-        if (direct.equals(SOUTH))
+    public Row getNewRow(Direct direct) {
+        if (Objects.equals(direct, new Direct(SOUTH)))
             return update(1);
-        if (direct.equals(NORTH))
+        if (Objects.equals(direct, new Direct(NORTH)))
             return update(-1);
         return new Row(this.limit);
     }

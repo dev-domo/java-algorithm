@@ -8,6 +8,14 @@ public class Col {
         this.limit = num;
     }
 
+    public Col(Col col) {
+        this.limit = col.getCol();
+    }
+
+    private int getCol() {
+        return this.limit;
+    }
+
     public Col update(int move) {
         this.limit += move;
         return new Col(this.limit);

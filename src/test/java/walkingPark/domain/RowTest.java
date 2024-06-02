@@ -34,4 +34,11 @@ public class RowTest {
         String[] park = {"SOO","OXX"};
         assertThat(row.getParkLine(park)).isEqualTo("OXX");
     }
+
+    @ParameterizedTest
+    @CsvSource(value = {"E:1", "W:1", "S:2", "N:0"}, delimiter = ':')
+    void 새로운_row(String direct, int move) {
+        Row row = new Row(1);
+        assertThat(row.getNewRow(direct)).isEqualTo(new Row(move));
+    }
 }

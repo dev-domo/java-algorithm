@@ -39,6 +39,6 @@ public class RowTest {
     @CsvSource(value = {"E:1", "W:1", "S:2", "N:0"}, delimiter = ':')
     void 새로운_row(String direct, int move) {
         Row row = new Row(1);
-        assertThat(row.getNewRow(direct)).isEqualTo(new Row(move));
+        assertThat(row.getNewRow(new Direct(direct))).isEqualTo(new Row(move));
     }
 }
